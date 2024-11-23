@@ -79,4 +79,22 @@ module.exports = {
             connection.release();
         });
     },
+
+    updateBibit(req, res) {
+        const { id } = req.params;
+        const { nama, jenis, status } = req.body;
+
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query(
+                'UPDATE bibit SET nama = ?, jenis = ?, status = ? WHERE id = ?',
+                [nama, jenis, status, id],
+                function (error, results) {
+                    if (error) throw error;
+                    res.redirect('/status'); 
+                }
+            );
+            connection.release();
+        });
+    },
 };  
