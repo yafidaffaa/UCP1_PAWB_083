@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pupuk</title>
+    <title>Bibit</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="<%= url %>">Management Data Pupuk</a>
+        <a class="navbar-brand" href="<%= url %>">Management Data Bibit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,40 +24,40 @@
                     <a class="nav-link" href="http://localhost:8000/pupuk">Pupuk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Bibit</a>
+                    <a class="nav-link" href="http://localhost:8000/bibit">Bibit</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5 pt-5">
-        <h1>Pupuk</h1>
-        <a href="<%= url + 'pupuk/add' %>" class="btn btn-primary mb-3">Tambah Data</a>
+        <h1>Bibit</h1>
+        <a href="<%= url + 'bibit/add' %>" class="btn btn-primary mb-3">Tambah Data</a>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Merek</th>
-                    <th>Harga</th>
-                    <th>Berat</th>
+                    <th>Nama</th>
+                    <th>Jenis</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <% if (pupuk.length> 0) { %>
-                    <% pupuk.forEach(function(pupuk) { %>
+                <% if (bibit.length> 0) { %>
+                    <% bibit.forEach(function(bibit) { %>
                         <tr>
                             <td>
-                                <%= pupuk.merek %>
+                                <%= bibit.nama %>
                             </td>
                             <td>
-                                <%= pupuk.harga %>
+                                <%= bibit.jenis %>
                             </td>
                             <td>
-                                <%= pupuk.berat %>
+                                <%= bibit.status %>
                             </td>
                             <td>
-                                <a href="<%= url + 'pupuk/edit/' + pupuk.id %>"
+                                <a href="<%= url + 'bibit/edit/' + bibit.id %>"
                                     class="btn btn-warning btn-sm">Edit</a>
-                                <a href="<%= url + 'pupuk/delete/' + pupuk.id %>" class="btn btn-danger btn-sm"
+                                <a href="<%= url + 'bibit/delete/' + bibit.id %>" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                             </td>
                         </tr>
