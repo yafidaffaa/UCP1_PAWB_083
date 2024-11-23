@@ -28,4 +28,10 @@ module.exports = {
             connection.release();
         });
     },
+
+    formBibit(req, res) {
+        res.render("addBibit", {
+            url: 'http://localhost:8000/',
+        });
+    },
 };  
