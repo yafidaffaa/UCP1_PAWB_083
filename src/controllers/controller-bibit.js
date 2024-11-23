@@ -97,4 +97,16 @@ module.exports = {
             connection.release();
         });
     },
+
+    deleteBibit(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('DELETE FROM bibit WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                res.redirect('/bibit'); 
+            });
+            connection.release();
+        });
+    },
 };  
