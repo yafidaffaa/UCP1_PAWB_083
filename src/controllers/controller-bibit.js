@@ -60,4 +60,23 @@ module.exports = {
             res.send('Data tidak lengkap');
         }
     },
+
+    editBibit(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('SELECT * FROM bibit WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                if (results.length > 0) {
+                    res.render('editBibit', {
+                        url: 'http://localhost:8000/',
+                        bibit: results[0] 
+                    });
+                } else {
+                    res.redirect('/bibit');
+                }
+            });
+            connection.release();
+        });
+    },
 };  
