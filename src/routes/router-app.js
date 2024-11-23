@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const homeController = require('../controllers').home;
 const pupukController = require('../controllers/controller-pupuk');
-// const bibitController = require('../controllers/controller-bibit');
+const bibitController = require('../controllers/controller-bibit');
 
 
 router.get("/pupuk", pupukController.getPupuk);
+router.get("/bibit", bibitController.getBibit);
+
 
 router.get("/", (req, res) => {
     res.render("home", { url: "/" });
