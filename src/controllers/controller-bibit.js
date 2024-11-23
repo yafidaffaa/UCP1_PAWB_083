@@ -34,4 +34,30 @@ module.exports = {
             url: 'http://localhost:8000/',
         });
     },
+
+    saveBibit(req, res) {
+        let { nama, jenis, status } = req.body;
+        console.log(nama, jenis, status);
+    
+        if (nama && jenis && status) {
+            pool.getConnection(function (err, connection) {
+                if (err) throw err;
+                connection.query(
+                    `INSERT INTO bibit (nama, jenis, status) VALUES (?, ?, ?);`,
+                    [nama, jenis, status],
+                    function (error, results) {
+                        if (error) {
+                            console.error(error);
+                            res.send('Gagal menyimpan data');
+                            return;
+                        }
+                        res.redirect('/bibit?status=success'); 
+                    }
+                );
+                connection.release();
+            });
+        } else {
+            res.send('Data tidak lengkap');
+        }
+    },
 };  
