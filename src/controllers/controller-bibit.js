@@ -36,15 +36,15 @@ module.exports = {
     },
 
     saveBibit(req, res) {
-        let { nama, jenis, status } = req.body;
-        console.log(nama, jenis, status);
+        let { name, jenis, status } = req.body;
+        console.log(name, jenis, status);
     
-        if (nama && jenis && status) {
+        if (name && jenis && status) {
             pool.getConnection(function (err, connection) {
                 if (err) throw err;
                 connection.query(
-                    `INSERT INTO bibit (nama, jenis, status) VALUES (?, ?, ?);`,
-                    [nama, jenis, status],
+                    `INSERT INTO bibit (name, jenis, status) VALUES (?, ?, ?);`,
+                    [name, jenis, status],
                     function (error, results) {
                         if (error) {
                             console.error(error);
@@ -82,16 +82,16 @@ module.exports = {
 
     updateBibit(req, res) {
         const { id } = req.params;
-        const { nama, jenis, status } = req.body;
+        const { name, jenis, status } = req.body;
 
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
-                'UPDATE bibit SET nama = ?, jenis = ?, status = ? WHERE id = ?',
-                [nama, jenis, status, id],
+                'UPDATE bibit SET name = ?, jenis = ?, status = ? WHERE id = ?',
+                [name, jenis, status, id],
                 function (error, results) {
                     if (error) throw error;
-                    res.redirect('/status'); 
+                    res.redirect('/bibit'); 
                 }
             );
             connection.release();
